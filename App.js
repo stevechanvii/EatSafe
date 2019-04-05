@@ -4,7 +4,6 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import DetailsScreen from './src/Navigation/DetailsScreen';
 import DiaryScreen from './src/Navigation/DiaryScreen';
-import SettingsScreen from './src/Navigation/SettingsScreen';
 import ScanningScreen from './src/Navigation/ScanningScreen';
 import ReportScreen from './src/Navigation/ReportScreen';
 import ProfileScreen from './src/Navigation/ProfileScreen';
@@ -13,11 +12,6 @@ import SomeWhereElseScreen from './src/Navigation/SomeWhereElseScreen';
 
 const DiaryStack = createStackNavigator({
   Diary: { screen: DiaryScreen },
-  Details: { screen: DetailsScreen },
-});
-
-const SettingsStack = createStackNavigator({
-  Settings: { screen: SettingsScreen },
   Details: { screen: DetailsScreen },
 });
 
@@ -31,7 +25,6 @@ export default createAppContainer(createBottomTabNavigator(
     Diary: { screen: DiaryStack },
     Scanning: { screen: ScanningScreen },
     Report: { screen: ReportScreen },
-    // Settings: { screen: SettingsStack }
     Profile: { screen: ProfileStack }
   },
   {
@@ -41,9 +34,6 @@ export default createAppContainer(createBottomTabNavigator(
         let iconName;
         if (routeName === 'Diary') {
           iconName = `calendar-${focused ? 'edit' : 'check-outline'}`;
-        } else if (routeName === 'Settings') { // No longer useable
-          // iconName = `ios-options${focused ? '' : '-outline'}`;
-          iconName = 'camera';
         } else if (routeName === 'Scanning') {
           iconName = 'barcode-scan';
         } else if (routeName === 'Report') {
