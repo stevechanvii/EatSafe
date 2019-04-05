@@ -8,6 +8,8 @@ import SettingsScreen from './src/Navigation/SettingsScreen';
 import ScanningScreen from './src/Navigation/ScanningScreen';
 import ReportScreen from './src/Navigation/ReportScreen';
 import ProfileScreen from './src/Navigation/ProfileScreen';
+import SomeWhereElseScreen from './src/Navigation/SomeWhereElseScreen';
+
 
 const DiaryStack = createStackNavigator({
   Diary: { screen: DiaryScreen },
@@ -19,6 +21,10 @@ const SettingsStack = createStackNavigator({
   Details: { screen: DetailsScreen },
 });
 
+const ProfileStack = createStackNavigator({
+  Profile: {screen: ProfileScreen},
+  SomeWhereElse: { screen: SomeWhereElseScreen }
+});
 
 export default createAppContainer(createBottomTabNavigator(
   {
@@ -26,7 +32,7 @@ export default createAppContainer(createBottomTabNavigator(
     Scanning: { screen: ScanningScreen },
     Report: { screen: ReportScreen },
     // Settings: { screen: SettingsStack }
-    Profile: { screen: ProfileScreen }
+    Profile: { screen: ProfileStack }
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
