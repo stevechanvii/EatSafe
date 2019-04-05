@@ -3,11 +3,12 @@ import { Button, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import DetailsScreen from './src/Navigation/DetailsScreen';
-import DiaryScreen from './src/Navigation/DiaryScreen';
-import ScanningScreen from './src/Navigation/ScanningScreen';
-import ReportScreen from './src/Navigation/ReportScreen';
-import ProfileScreen from './src/Navigation/ProfileScreen';
+import DiaryScreen from './src/Navigation/DiaryScreen/DiaryScreen';
+import ScanningScreen from './src/Navigation/ScanningScreen/ScanningScreen';
+import ReportScreen from './src/Navigation/ReportScreen/ReportScreen';
+import ProfileScreen from './src/Navigation/ProfileScreen/ProfileScreen';
 import SomeWhereElseScreen from './src/Navigation/SomeWhereElseScreen';
+import ProductDetailScreen from './src/Navigation/ScanningScreen/ProductDetailScreen';
 
 
 const DiaryStack = createStackNavigator({
@@ -20,10 +21,15 @@ const ProfileStack = createStackNavigator({
   SomeWhereElse: { screen: SomeWhereElseScreen }
 });
 
+const ScanningStack = createStackNavigator({
+  Scanning: { screen: ScanningScreen },
+  ProductDetail: {screen: ProductDetailScreen}
+});
+
 export default createAppContainer(createBottomTabNavigator(
   {
     Diary: { screen: DiaryStack },
-    Scanning: { screen: ScanningScreen },
+    Scanning: { screen: ScanningStack },
     Report: { screen: ReportScreen },
     Profile: { screen: ProfileStack }
   },

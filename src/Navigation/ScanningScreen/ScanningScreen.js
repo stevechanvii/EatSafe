@@ -33,8 +33,6 @@ const PendingView = () => (
     </View>
 );
 
-
-
 export default class App extends Component {
     state = {
         barcode: null,
@@ -44,9 +42,13 @@ export default class App extends Component {
     onBarCodeEvent = (event) => {
         this.setState({
             barcode: event.data,
-            showCamera: false
+            // showCamera: false
          });
-        alert(event.type + '  ' +event.data);
+        // alert(event.type + '  ' +event.data);
+        this.props.navigation.navigate('ProductDetail', {
+            barcodeType: event.type,
+            barcode: event.data
+        });
     };
 
     render() {
