@@ -33,7 +33,22 @@ const PendingView = () => (
     </View>
 );
 
+
+
 export default class App extends Component {
+    state = {
+        barcode: null,
+        showCamera: true
+    };
+
+    onBarCodeEvent = (event) => {
+        this.setState({
+            barcode: event.data,
+            showCamera: false
+         });
+        alert(event.type + '  ' +event.data);
+    };
+
     render() {
         return (
             <View style={styles.container}>
@@ -42,7 +57,8 @@ export default class App extends Component {
                     type={RNCamera.Constants.Type.back}
                     flashMode={RNCamera.Constants.FlashMode.auto}
                     permissionDialogTitle={'Permission to use camera'}
-                    permissionDialogMessage={'We need your permission to use your camera phone'}>
+                    permissionDialogMessage={'We need your permission to use your camera phone'}
+                    onBarCodeRead={this.state.showCamera ? this.onBarCodeEvent.bind(this) : null}>
 
                     <BarcodeMask width={300} height={100} />
 
