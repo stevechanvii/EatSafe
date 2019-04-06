@@ -18,7 +18,7 @@ class reportScreen extends Component {
                 <Content padder>
                     <Accordion
                         dataArray={dataArray}
-                        icon="add"
+                        icon="add" 
                         expandedIcon="remove"
                         iconStyle={{ color: "green" }}
                         expandedIconStyle={{ color: "red" }}
