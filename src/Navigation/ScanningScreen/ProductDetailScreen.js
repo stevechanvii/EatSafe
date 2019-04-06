@@ -11,16 +11,17 @@ class productDetailScreen extends Component {
 
     componentDidMount() {
         const { navigation } = this.props;
-        return fetch(`https://world.openfoodfacts.org/api/v0/product/${navigation.getParam('barcode', 'NO-Code').toString()}.json`)
+        const barcode = navigation.getParam('barcode', 'NO-Code');
+        return fetch(`https://world.openfoodfacts.org/api/v0/product/${barcode.toString()}.json`)
             .then((response) => response.json())
             .then((responseJson) => {
 
                 this.setState({
                     isLoading: false,
-                    barcode: navigation.getParam('barcode', 'NO-Code'),
+                    barcode: barcode,
                     productName: responseJson.status_verbose.toString() === 'product not found' ? null : responseJson.product.product_name,
                     // be careful bugs here, if product not exist, ingredients won't find
-                    ingredients: responseJson.product.ingredients_text_en,
+                    ingredients: responseJson.product.ingredients,
                     allergens: responseJson.product.allergens
                 }, function () {
 
@@ -59,22 +60,15 @@ class productDetailScreen extends Component {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Text>Product Name: {JSON.stringify(this.state.productName)}</Text>
-                <Text>Product Ingredients: {JSON.stringify(this.state.ingredients)}</Text>
                 <Text>Product Alerges: {JSON.stringify(this.state.allergens)}</Text>
-                
-                {/* <Text>{this.state.ingredients.forEach(obj => {obj.text})}</Text> */}
+                {/* Can not use forEach??? Don't know why */}
+                {this.state.ingredients.map(obj => <Text>{obj.text}</Text>)}
 
-
-                {/* <Text>{JSON.stringify(this.state.productName.ingredients)}</Text> */}
                 {/* <FlatList
                     data={this.state.productName}
                     renderItem={({ item }) => <Text>Product Name: {item.product_name}, Ingredients: {item.ingredients}</Text>}
                     // keyExtractor={({ id }, index) => id}
                 /> */}
-                {/* <Text>barcode type: {JSON.stringify(barcodeType)}</Text>
-                <Text>barcode: {JSON.stringify(barcode)}</Text>
-
-                <Text>product Detail Screen</Text> */}
 
                 <Button
                     title="Go back to Scan"
