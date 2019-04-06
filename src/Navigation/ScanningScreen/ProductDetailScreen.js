@@ -62,7 +62,8 @@ class productDetailScreen extends Component {
                 <Text>Product Name: {JSON.stringify(this.state.productName)}</Text>
                 <Text>Product Alerges: {JSON.stringify(this.state.allergens)}</Text>
                 {/* Can not use forEach??? Don't know why */}
-                {this.state.ingredients.map(obj => <Text>{obj.text}</Text>)}
+                <Text>Ingredients:</Text>
+                {this.state.ingredients.map(obj => <Text key={obj.id}>{obj.text}</Text>)}
 
                 {/* <FlatList
                     data={this.state.productName}

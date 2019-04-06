@@ -14,7 +14,7 @@ class reportScreen extends Component {
     render() {
         return (
             <Container>
-                <Header />
+                {/* <Header /> */}
                 <Content padder>
                     <Accordion
                         dataArray={dataArray}
