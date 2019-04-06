@@ -17,7 +17,11 @@ class productDetailScreen extends Component {
 
                 this.setState({
                     isLoading: false,
-                    dataSource: responseJson,
+                    barcode: navigation.getParam('barcode', 'NO-Code'),
+                    productName: responseJson.status_verbose.toString() === 'product not found' ? null : responseJson.product.product_name,
+                    // be careful bugs here, if product not exist, ingredients won't find
+                    ingredients: responseJson.product.ingredients_text_en,
+                    allergens: responseJson.product.allergens
                 }, function () {
 
                 });
@@ -43,12 +47,27 @@ class productDetailScreen extends Component {
         // const barcodeType = navigation.getParam('barcodeType', 'NO-Type');
         // const barcode = navigation.getParam('barcode', 'NO-Code');
 
+        if (this.state.productName === null) {
+            return (
+                <View style={{ flex: 1, padding: 20 }}>
+                    <Text>Barcode: {this.state.barcode} </Text>
+                    <Text>product not found</Text>
+                </View>
+            )
+        }
+
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>{JSON.stringify(this.state.dataSource.product.product_name)}</Text>
-                {/* <Text>{JSON.stringify(this.state.dataSource.ingredients)}</Text> */}
+                <Text>Product Name: {JSON.stringify(this.state.productName)}</Text>
+                <Text>Product Ingredients: {JSON.stringify(this.state.ingredients)}</Text>
+                <Text>Product Alerges: {JSON.stringify(this.state.allergens)}</Text>
+                
+                {/* <Text>{this.state.ingredients.forEach(obj => {obj.text})}</Text> */}
+
+
+                {/* <Text>{JSON.stringify(this.state.productName.ingredients)}</Text> */}
                 {/* <FlatList
-                    data={this.state.dataSource}
+                    data={this.state.productName}
                     renderItem={({ item }) => <Text>Product Name: {item.product_name}, Ingredients: {item.ingredients}</Text>}
                     // keyExtractor={({ id }, index) => id}
                 /> */}
