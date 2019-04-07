@@ -11,10 +11,14 @@ const dataArray = [
 ];
 
 class reportScreen extends Component {
+    // static navigationOptions = {
+    //     title: 'Report',
+    // };
+
     render() {
         return (
             <Container>
-                {/* <Header /> */}
+                <Header />
                 <Content padder>
                     <Accordion
                         dataArray={dataArray}

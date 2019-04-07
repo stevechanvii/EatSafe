@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { FlatList, ActivityIndicator, Text, View, Button } from 'react-native';
 import CardShowCase from '../../Components/Card/CardShowCase';
 import ProductNotFound from '../../Components/Card/ProductNotFound';
+import imageUri from '../../asserts/allergies_image.jpg';
 
 // import { Text, View, Button } from 'react-native';
 
@@ -30,12 +31,12 @@ class productDetailScreen extends Component {
                         barcode: barcode,
                         productName: responseJson.product.product_name,
                         // be careful bugs here, if product not exist, these won't found
-                        ingredients: responseJson.product.ingredients,
-                        allergens: responseJson.product.allergens,
-                        image: responseJson.product.image_url,
-                        categories: responseJson.product.categories_tags,
-                        nutrientLevel: responseJson.product.nutrient_levels,
-                        genericName: responseJson.product.generic_name
+                        ingredients: responseJson.product.ingredients ? responseJson.product.ingredients : 'Ingredients Not Found',
+                        allergens: responseJson.product.allergens ? responseJson.product.allergens : 'Allergens Not Found',
+                        image: responseJson.product.image_url ? responseJson.product.image_url : imageUri,
+                        categories: responseJson.product.categories_tags ? responseJson.product.categories_tags : '',
+                        nutrientLevel: responseJson.product.nutrient_levels ? responseJson.product.nutrient_levels: 'Nutrient Level Not Found',
+                        genericName: responseJson.product.generic_name ? responseJson.product.generic_name : ''
                     }, function () {
 
                     });
