@@ -4,7 +4,6 @@ import { StyleSheet } from 'react-native';
 import { Container, Header, Content, Thumbnail, Text, Button, CheckBox, Body, ListItem } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import uri from '../../asserts/avatar_square.jpg';
-import EditProfile from './EditProfileScreen';
 
 
 class profileScreen extends Component {

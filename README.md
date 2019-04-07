@@ -1,6 +1,6 @@
 # EatSafe
 
-This App is produced by team Hyieia, implemented and maintained by Steve Chan.
+This App is produced by team Hyieia
 More infromation comming soon 
 
 Useful Link
