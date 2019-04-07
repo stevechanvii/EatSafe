@@ -9,6 +9,7 @@ import ReportScreen from './src/Navigation/ReportScreen/ReportScreen';
 import ProfileScreen from './src/Navigation/ProfileScreen/ProfileScreen';
 import SomeWhereElseScreen from './src/Navigation/SomeWhereElseScreen';
 import ProductDetailScreen from './src/Navigation/ScanningScreen/ProductDetailScreen';
+import EditProfileScreen from './src/Navigation/ProfileScreen/EditProfileScreen';
 
 
 const DiaryStack = createStackNavigator({
@@ -18,7 +19,8 @@ const DiaryStack = createStackNavigator({
 
 const ProfileStack = createStackNavigator({
   Profile: {screen: ProfileScreen},
-  SomeWhereElse: { screen: SomeWhereElseScreen }
+  SomeWhereElse: { screen: SomeWhereElseScreen },
+  EditProfile: { screen: EditProfileScreen}
 });
 
 const ScanningStack = createStackNavigator({

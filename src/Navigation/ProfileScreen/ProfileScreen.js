@@ -4,6 +4,8 @@ import { StyleSheet } from 'react-native';
 import { Container, Header, Content, Thumbnail, Text, Button, CheckBox, Body, ListItem } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import uri from '../../asserts/avatar_square.jpg';
+import EditProfile from './EditProfileScreen';
+
 
 class profileScreen extends Component {
     static navigationOptions = {
@@ -11,6 +13,7 @@ class profileScreen extends Component {
     };
 
     render() {
+        
         return (
             // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             //     <Text>profile!</Text>
@@ -41,8 +44,8 @@ class profileScreen extends Component {
                         </Row>
                         <Row style={styles.buttonRow}>
                             <Button info
-                                onPress={() => this.props.navigation.navigate('SomeWhereElse')}>
-                                <Text>Go to some Where Else Screen</Text>
+                                onPress={() => this.props.navigation.navigate('EditProfile')}>
+                                <Text>Setup Profile</Text>
                             </Button>
                         </Row>
 
