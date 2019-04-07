@@ -6,12 +6,14 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import uri from '../../asserts/avatar_square.jpg';
 
 
+
 class editProfileScreen extends Component {
     constructor(props) {
         super(props);
         this.state = { chosenDate: new Date() };
         this.setDate = this.setDate.bind(this);
     }
+
     setDate(newDate) {
         this.setState({
             chosenDate: newDate,
@@ -27,11 +29,11 @@ class editProfileScreen extends Component {
                 {/* <Header /> */}
                 <Content>
                     <Text>Hi, Welcome to EatSafe,</Text>
-                    <Text>the information will only be saved locally for security reasons</Text>
+                    <Text>the information will only be saved locally</Text>
                     <Form>
                         <Item floatingLabel>
                             <Label>Username</Label>
-                            <Input />
+                            <Input onChangeText={(text) => this.setState({userName: text})} />
                         </Item>
                     </Form>
                     <Text>Date of Birth</Text>
@@ -69,7 +71,7 @@ class editProfileScreen extends Component {
                             <Text>Seafood</Text>
                         </Body>
                     </ListItem>
-                    <Button>
+                    <Button onPress={console.log(this.state)} >
                         <Text>Save</Text>
                     </Button>
                 </Content>
