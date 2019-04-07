@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import { StyleSheet } from 'react-native';
-import { Container, Header, Content, Thumbnail, Text, Button } from 'native-base';
-import { Row, Grid } from 'react-native-easy-grid';
+import { Container, Header, Content, Thumbnail, Text, Button, CheckBox, Body, ListItem } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import uri from '../../asserts/avatar_square.jpg';
 
 class profileScreen extends Component {
@@ -20,22 +20,33 @@ class profileScreen extends Component {
             //     />
             // </View>
             <Container>
-                <Grid>
-                    <Row style={styles.avatorRow}>
+                <Content>
+                    <Grid>
+                        <Row style={styles.avatorRow}>
                             <Thumbnail large source={uri} />
-                    </Row>
-                    <Row style={styles.allergCheck}>
-                        <Text>Hello, my name is Danyang Chen</Text>
-                    </Row>
-                    <Row style={styles.buttonRow}>
-                        <Button info
-                            onPress={() => this.props.navigation.navigate('SomeWhereElse')}>
-                            <Text>Go to some Where Else Screen</Text>
-                        </Button>
-                    </Row>
+                            <Text>Hi, </Text>
+                            <Text>Steve</Text>
+                        </Row>
+                        <Row style={styles.allergCheck}>
+                            {/* <Text>Hello, my name is Danyang Chen</Text> */}
 
-                </Grid>
+                            <ListItem>
+                                <CheckBox checked={false} />
+                                {/* <Body> */}
+                                <Text>Daily Stand Up</Text>
+                                {/* </Body> */}
+                            </ListItem>
 
+                        </Row>
+                        <Row style={styles.buttonRow}>
+                            <Button info
+                                onPress={() => this.props.navigation.navigate('SomeWhereElse')}>
+                                <Text>Go to some Where Else Screen</Text>
+                            </Button>
+                        </Row>
+
+                    </Grid>
+                </Content>
             </Container>
         );
     }
@@ -53,7 +64,9 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     buttonRow: {
-        height: 200
+        height: 200,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 
