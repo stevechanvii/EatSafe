@@ -26,6 +26,7 @@ class profileScreen extends Component {
                             <Thumbnail large source={uri} />
                             <Text>Hi, </Text>
                             <Text>Steve</Text>
+
                         </Row>
                         <Row style={styles.allergCheck}>
                             {/* <Text>Hello, my name is Danyang Chen</Text> */}

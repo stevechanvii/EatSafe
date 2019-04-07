@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 
 import { FlatList, ActivityIndicator, Text, View, Button } from 'react-native';
+import CardShowCase from '../../Components/Card/CardShowCase';
+import ProductNotFound from '../../Components/Card/ProductNotFound';
 
 // import { Text, View, Button } from 'react-native';
 
 class productDetailScreen extends Component {
-    state = { 
+    state = {
         isLoading: true
-     }
+    }
 
     componentDidMount() {
         const { navigation } = this.props;
@@ -16,23 +18,36 @@ class productDetailScreen extends Component {
             .then((response) => response.json())
             .then((responseJson) => {
 
-                this.setState({
-                    isLoading: false,
-                    barcode: barcode,
-                    productName: responseJson.status_verbose.toString() === 'product not found' ? null : responseJson.product.product_name,
-                    // be careful bugs here, if product not exist, ingredients won't find
-                    ingredients: responseJson.product.ingredients,
-                    allergens: responseJson.product.allergens
-                }, function () {
+                if (responseJson.status_verbose.toString() === 'product not found') {
+                    this.setState({
+                        isLoading: false,
+                        barcode: barcode,
+                        productName: null
+                    });
+                } else {
+                    this.setState({
+                        isLoading: false,
+                        barcode: barcode,
+                        productName: responseJson.product.product_name,
+                        // be careful bugs here, if product not exist, these won't found
+                        ingredients: responseJson.product.ingredients,
+                        allergens: responseJson.product.allergens,
+                        image: responseJson.product.image_url,
+                        categories: responseJson.product.categories_tags,
+                        nutrientLevel: responseJson.product.nutrient_levels,
+                        genericName: responseJson.product.generic_name
+                    }, function () {
 
-                });
+                    });
 
-            })
+                }
+            }
+
+            )
             .catch((error) => {
                 console.error(error);
             });
     }
-
 
     render() {
 
@@ -50,32 +65,12 @@ class productDetailScreen extends Component {
 
         if (this.state.productName === null) {
             return (
-                <View style={{ flex: 1, padding: 20 }}>
-                    <Text>Barcode: {this.state.barcode} </Text>
-                    <Text>product not found</Text>
-                </View>
+                <ProductNotFound barcode={this.state.barcode} />
             )
         }
 
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>Product Name: {JSON.stringify(this.state.productName)}</Text>
-                <Text>Product Alerges: {JSON.stringify(this.state.allergens)}</Text>
-                {/* Can not use forEach??? Don't know why */}
-                <Text>Ingredients:</Text>
-                {this.state.ingredients.map(obj => <Text key={obj.id}>{obj.text}</Text>)}
-
-                {/* <FlatList
-                    data={this.state.productName}
-                    renderItem={({ item }) => <Text>Product Name: {item.product_name}, Ingredients: {item.ingredients}</Text>}
-                    // keyExtractor={({ id }, index) => id}
-                /> */}
-
-                <Button
-                    title="Go back to Scan"
-                    onPress={() => this.props.navigation.goBack()}
-                />
-            </View>
+            <CardShowCase productDetail={this.state} />
         );
     }
 }
