@@ -6,22 +6,35 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import uri from '../../asserts/avatar_square.jpg';
 
 
-
 class editProfileScreen extends Component {
     constructor(props) {
         super(props);
-        this.state = { chosenDate: new Date() };
+        this.state = { 
+            chosenDate: new Date(),
+            milk: false,
+            soy: false,
+            seafood: false,
+            userName: '' };
         this.setDate = this.setDate.bind(this);
     }
 
     setDate(newDate) {
         this.setState({
             chosenDate: newDate,
-            milk: false,
-            Soy: false,
-            seafood: false
         });
-    }
+    };
+
+    // wrong!!!!!
+    saveHandler = async () => {
+        try {
+            await AsyncStorage.setItem('user_name', this.state.userName.toString());
+            await AsyncStorage.setItem('milk', this.state.milk.toString());
+            await AsyncStorage.setItem('soy', this.state.soy.toString());
+            await AsyncStorage.setItem('seafood', this.state.seafood.toString());
+          } catch (error) {
+            // Error saving data
+          }
+    };
 
     render() {
         return (
@@ -71,14 +84,14 @@ class editProfileScreen extends Component {
                             <Text>Seafood</Text>
                         </Body>
                     </ListItem>
-                    <Button onPress={console.log(this.state)} >
+                    <Button onPress={this.saveHandler} >
                         <Text>Save</Text>
                     </Button>
                 </Content>
             </Container>
         );
     }
-}
+};
 
 const styles = StyleSheet.create({
     avatar: {

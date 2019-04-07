@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import { StyleSheet } from 'react-native';
-import { Container, Header, Content, Thumbnail, Text, Button, CheckBox, Body, ListItem } from 'native-base';
+import { StyleSheet, AsyncStorage } from 'react-native';
+import { Container, Header, Content, Thumbnail, Text, Button, Badge, Body, ListItem } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import uri from '../../asserts/avatar_square.jpg';
 
@@ -11,34 +11,52 @@ class profileScreen extends Component {
         title: 'Profile',
     };
 
+    state = {
+        milk: false,
+        soy: false,
+        seafood: false,
+        userName: ''
+    };
+
+    // wrong!!!!!
+    readHandler = async() => {
+        try {
+            const user_name = await AsyncStorage.getItem('user_name');
+            user_name ? this.setState({user_name: ''}) : this.setState({userName: user_name});
+
+            // const milk = await AsyncStorage.getItem('milk');
+            // milk ? this.setState({milk: ''}) : this.setState({milk: milk});
+
+            // const soy = await AsyncStorage.getItem('soy');
+            // soy ? this.setState({soy: ''}) : this.setState({soy: soy});
+
+            // const seafood = await AsyncStorage.getItem('seafood');
+            // seafood ? this.setState({seafood: ''}) : this.setState({seafood: seafood});
+
+          } catch (error) {
+            // Error retrieving data
+          }
+    };
+
     render() {
-        
+        this.readHandler();
+        console.log(this.state);
+
         return (
-            // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            //     <Text>profile!</Text>
-            //     <Button
-            //         title="Go to some Where Else Screen"
-            //         onPress={() => this.props.navigation.navigate('SomeWhereElse')}
-            //     />
-            // </View>
             <Container>
                 <Content>
                     <Grid>
                         <Row style={styles.avatorRow}>
                             <Thumbnail large source={uri} />
                             <Text>Hi, </Text>
-                            <Text>Steve</Text>
+                            <Text>{this.state.userName}</Text>
 
                         </Row>
                         <Row style={styles.allergCheck}>
-                            {/* <Text>Hello, my name is Danyang Chen</Text> */}
-
-                            <ListItem>
-                                <CheckBox checked={false} />
-                                {/* <Body> */}
-                                <Text>Daily Stand Up</Text>
-                                {/* </Body> */}
-                            </ListItem>
+                            <Text>Allergen</Text>
+                            {/* {this.state.milk ? <Badge info><Text>milk</Text></Badge> : ''}
+                            {this.state.soy ? <Badge info><Text>soy</Text></Badge> : ''}
+                            {this.state.seafood ? <Badge info><Text>seafood</Text></Badge> : ''} */}
 
                         </Row>
                         <Row style={styles.buttonRow}>
