@@ -9,29 +9,37 @@ More infromation comming soon
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Android:
+JDK 8
+Android studio
 
-```
-Give examples
-```
+iOS:
+xCode
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+install packages
 
 ```
-Give the example
+npm install
 ```
 
-And repeat
+run android
 
 ```
-until finished
+react-native run-android
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+sometime may have problems with abd
+```
+export PATH="$PATH:/Users/stevechanvii/Library/Android/sdk/platform-tools":$PATH
+```
+
+run iOS
+```
+react-native run-ios
+```
+
 
 ## Running the tests
 
@@ -66,14 +74,14 @@ Add additional notes about how to deploy this on a live system
 ## Contributing
 
 Useful Link
-React: https://reactjs.org
-React Native: https://facebook.github.io/react-native/docs/tutorial
-React Navigation: https://reactnavigation.org/en/
-NativeBase: https://docs.nativebase.io
-React Native Vector Icons: https://github.com/oblador/react-native-vector-icons
-React Native Camera: https://github.com/react-native-community/react-native-camera
-React Native Barcode Mask: https://github.com/shahnawaz/react-native-barcode-mask
-Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+* React: https://reactjs.org
+* React Native: https://facebook.github.io/react-native/docs/tutorial
+* React Navigation: https://reactnavigation.org/en/
+* NativeBase: https://docs.nativebase.io
+* React Native Vector Icons: https://github.com/oblador/react-native-vector-icons
+* React Native Camera: https://github.com/react-native-community/react-native-camera
+* React Native Barcode Mask: https://github.com/shahnawaz/react-native-barcode-mask
+* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 Thank you for the communities and programmers who provid so amazing open source libraries. 
 
