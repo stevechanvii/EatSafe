@@ -11,7 +11,9 @@ NativeBase: https://docs.nativebase.io
 React Native Vector Icons: https://github.com/oblador/react-native-vector-icons
 React Native Camera: https://github.com/react-native-community/react-native-camera
 React Native Barcode Mask: https://github.com/shahnawaz/react-native-barcode-mask
+Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
-Thank you for the communities and programmers who provied so amazing open source libraries. 
+
+Thank you for the communities and programmers who provid so amazing open source libraries. 
 
 

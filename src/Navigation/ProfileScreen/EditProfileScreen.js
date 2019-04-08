@@ -26,14 +26,17 @@ class editProfileScreen extends Component {
 
     // wrong!!!!!
     saveHandler = async () => {
+        console.log('save Handler invoked!');
         try {
-            await AsyncStorage.setItem('user_name', this.state.userName.toString());
-            await AsyncStorage.setItem('milk', this.state.milk.toString());
-            await AsyncStorage.setItem('soy', this.state.soy.toString());
-            await AsyncStorage.setItem('seafood', this.state.seafood.toString());
+            await AsyncStorage.setItem('user_name', JSON.stringify(this.state.userName));
+            // await AsyncStorage.setItem('milk', this.state.milk);
+            // await AsyncStorage.setItem('soy', this.state.soy);
+            // await AsyncStorage.setItem('seafood', this.state.seafood);
           } catch (error) {
             // Error saving data
+            console.log(error);
           }
+          this.props.navigation.navigate('Profile', {userName: this.state.userName});
     };
 
     render() {

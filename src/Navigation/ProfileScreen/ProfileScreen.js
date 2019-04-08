@@ -15,33 +15,31 @@ class profileScreen extends Component {
         milk: false,
         soy: false,
         seafood: false,
+        isLoading: true,
         userName: ''
+        
     };
 
-    // wrong!!!!!
-    readHandler = async() => {
-        try {
-            const user_name = await AsyncStorage.getItem('user_name');
-            user_name ? this.setState({user_name: ''}) : this.setState({userName: user_name});
+    componentDidMount() {
+        const { navigation } = this.props;
+        const userName = navigation.getParam('userName', this.state.userName);
+        this.setState({userName: userName});
 
-            // const milk = await AsyncStorage.getItem('milk');
-            // milk ? this.setState({milk: ''}) : this.setState({milk: milk});
+        AsyncStorage.getItem('user_name').then((token) => {
+            console.log(token);
+            this.setState({
+                isLoading: false,
+                userName: token
+            });
+        });
+    }
 
-            // const soy = await AsyncStorage.getItem('soy');
-            // soy ? this.setState({soy: ''}) : this.setState({soy: soy});
-
-            // const seafood = await AsyncStorage.getItem('seafood');
-            // seafood ? this.setState({seafood: ''}) : this.setState({seafood: seafood});
-
-          } catch (error) {
-            // Error retrieving data
-          }
-    };
-
+    
     render() {
-        this.readHandler();
-        console.log(this.state);
-
+        if (this.state.isLoading) {
+            return <Container><Text>Loading...</Text></Container>;
+        }
+        
         return (
             <Container>
                 <Content>
