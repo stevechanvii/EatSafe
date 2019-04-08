@@ -61,7 +61,7 @@ class productDetailScreen extends Component {
         }
 
         // const { navigation } = this.props;
-        // const barcodeType = navigation.getParam('barcodeType', 'NO-Type');
+        // cobnst barcodeType = navigation.getParam('arcodeType', 'NO-Type');
         // const barcode = navigation.getParam('barcode', 'NO-Code');
 
         if (this.state.productName === null) {
