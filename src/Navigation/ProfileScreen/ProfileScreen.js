@@ -23,8 +23,13 @@ class profileScreen extends Component {
 
     //refresh code after go back
     refreshFunction(props) {
-        this.setState({ userName: props });
-        console.log('refreshFunction ' + this.state.userName);
+        this.setState({
+            userName: props.userName.toString(),
+            milk: props.milk.toString() === 'true',
+            soy: props.soy.toString() === 'true',
+            seafood: props.seafood.toString() === 'true'
+        });
+        console.log('refreshFunction ' + this.state.soy);
     }
 
     componentDidMount() {
@@ -56,14 +61,14 @@ class profileScreen extends Component {
                         </Row>
                         <Row style={styles.allergCheck}>
                             <Text>Allergen</Text>
-                            {/* {this.state.milk ? <Badge info><Text>milk</Text></Badge> : ''}
-                            {this.state.soy ? <Badge info><Text>soy</Text></Badge> : ''}
-                            {this.state.seafood ? <Badge info><Text>seafood</Text></Badge> : ''} */}
+                            {this.state.milk ? <Badge info><Text>milk</Text></Badge> : null}
+                            {this.state.soy ? <Badge info><Text>soy</Text></Badge> : null}
+                            {this.state.seafood ? <Badge info><Text>seafood</Text></Badge> : null}
 
                         </Row>
                         <Row style={styles.buttonRow}>
                             <Button info
-                                onPress={() => this.props.navigation.navigate('EditProfile', {refresh: this.refreshFunction.bind(this)})}>
+                                onPress={() => this.props.navigation.navigate('EditProfile', { refresh: this.refreshFunction.bind(this) })}>
                                 <Text>Setup Profile</Text>
                             </Button>
                         </Row>

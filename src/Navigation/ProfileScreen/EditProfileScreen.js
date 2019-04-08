@@ -33,16 +33,16 @@ class editProfileScreen extends Component {
         console.log('save Handler invoked!');
         try {
             await AsyncStorage.setItem('user_name', JSON.stringify(this.state.userName));
-            // await AsyncStorage.setItem('milk', this.state.milk);
-            // await AsyncStorage.setItem('soy', this.state.soy);
-            // await AsyncStorage.setItem('seafood', this.state.seafood);
+            await AsyncStorage.setItem('milk', JSON.stringify(this.state.milk));
+            await AsyncStorage.setItem('soy', JSON.stringify(this.state.soy));
+            await AsyncStorage.setItem('seafood', JSON.stringify(this.state.seafood));
           } catch (error) {
             // Error saving data
             console.log(error);
           }
 
           
-          this.props.navigation.state.params.refresh(this.state.userName);
+          this.props.navigation.state.params.refresh(this.state);
           this.props.navigation.goBack();
     };
 
