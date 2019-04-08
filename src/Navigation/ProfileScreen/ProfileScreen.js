@@ -66,12 +66,15 @@ class profileScreen extends Component {
                     <Grid>
                         <Row style={styles.avatorRow}>
                             <Thumbnail large source={uri} />
+                        </Row>
+                        <Row style={styles.avatorRow}>
                             <Text>Hi, </Text>
                             <Text>{this.state.userName ? this.state.userName.toString() : 'please sign in'}</Text>
-
+                        </Row>
+                        <Row style={styles.allergyIcon}>
+                            <Text>Allergens</Text>
                         </Row>
                         <Row style={styles.allergCheck}>
-                            <Text>Allergen</Text>
                             {this.state.milk ? this.state.milk.toString() === 'true' ? <Badge info><Text>milk</Text></Badge> : null : null}
                             {this.state.soy ? this.state.soy.toString() === 'true' ? <Badge info><Text>soy</Text></Badge> : null : null}
                             {this.state.seafood ? this.state.seafood.toString() === 'true' ? <Badge info><Text>seafood</Text></Badge> : null : null}
@@ -93,17 +96,22 @@ class profileScreen extends Component {
 
 const styles = StyleSheet.create({
     avatorRow: {
-        height: 200,
+        height: 100,
         justifyContent: 'center',
         alignItems: 'center'
     },
     allergCheck: {
-        height: 200,
+        height: 100,
         justifyContent: 'center',
         alignItems: 'center'
     },
     buttonRow: {
         height: 200,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    allergyIcon: {
+        height: 50,
         justifyContent: 'center',
         alignItems: 'center'
     }

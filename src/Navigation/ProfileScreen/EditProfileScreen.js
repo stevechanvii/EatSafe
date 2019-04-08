@@ -9,16 +9,17 @@ import uri from '../../asserts/avatar_square.jpg';
 class editProfileScreen extends Component {
     static navigationOptions = {
         title: 'Edit Profile',
-      };
+    };
 
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             chosenDate: new Date(),
             milk: false,
             soy: false,
             seafood: false,
-            userName: '' };
+            userName: ''
+        };
         this.setDate = this.setDate.bind(this);
     }
 
@@ -36,30 +37,31 @@ class editProfileScreen extends Component {
             await AsyncStorage.setItem('milk', JSON.stringify(this.state.milk));
             await AsyncStorage.setItem('soy', JSON.stringify(this.state.soy));
             await AsyncStorage.setItem('seafood', JSON.stringify(this.state.seafood));
-          } catch (error) {
+        } catch (error) {
             // Error saving data
             console.log(error);
-          }
+        }
 
-          
-          this.props.navigation.state.params.refresh(this.state);
-          this.props.navigation.goBack();
+
+        this.props.navigation.state.params.refresh(this.state);
+        this.props.navigation.goBack();
     };
 
     render() {
         return (
-            <Container>
+            <Container style={{ alignItems: 'center', justifyContent: 'center' }}>
                 {/* <Header /> */}
                 <Content>
-                    <Text>Hi, Welcome to EatSafe,</Text>
-                    <Text>the information will only be saved locally</Text>
+                    <Thumbnail large source={uri} style={{ alignSelf: 'center' }} />
+                    <Text style={{ alignSelf: 'center' }}>Hi, Welcome to EatSafe,</Text>
+                    <Text style={{ alignSelf: 'center' }}>The information will only be saved locally</Text>
                     <Form>
                         <Item floatingLabel>
                             <Label>Username</Label>
-                            <Input onChangeText={(text) => this.setState({userName: text})} />
+                            <Input onChangeText={(text) => this.setState({ userName: text })} />
                         </Item>
                     </Form>
-                    <Text>Date of Birth</Text>
+                    {/* <Text>Date of Birth</Text>
                     <DatePicker
                         defaultDate={new Date(1990, 1, 1)}
                         minimumDate={new Date(1900, 1, 1)}
@@ -74,8 +76,8 @@ class editProfileScreen extends Component {
                         placeHolderTextStyle={{ color: "#d3d3d3" }}
                         onDateChange={this.setDate}
                         disabled={false}
-                    />
-                    <Text>Please choose common allerges you suffer from</Text>
+                    /> */}
+                    <Text style={{ alignSelf: 'center', margin: 20 }} >Please choose common allerges you suffer from</Text>
                     <ListItem onPress={() => this.setState({ milk: !this.state.milk })}>
                         <CheckBox checked={this.state.milk} onPress={() => this.setState({ milk: !this.state.milk })} />
                         <Body>
@@ -94,7 +96,7 @@ class editProfileScreen extends Component {
                             <Text>Seafood</Text>
                         </Body>
                     </ListItem>
-                    <Button onPress={this.saveHandler} >
+                    <Button info style={{ padding: '10%', alignSelf: 'center', margin: 20 }} onPress={this.saveHandler} >
                         <Text>Save</Text>
                     </Button>
                 </Content>
