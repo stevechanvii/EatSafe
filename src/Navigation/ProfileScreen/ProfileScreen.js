@@ -24,22 +24,33 @@ class profileScreen extends Component {
     //refresh code after go back
     refreshFunction(props) {
         this.setState({
-            userName: props.userName.toString(),
-            milk: props.milk.toString() === 'true',
-            soy: props.soy.toString() === 'true',
-            seafood: props.seafood.toString() === 'true'
+            userName: props.userName,
+            milk: props.milk,
+            soy: props.soy,
+            seafood: props.seafood
         });
         console.log('refreshFunction ' + this.state.soy);
     }
 
     componentDidMount() {
-        AsyncStorage.getItem('user_name').then((token) => {
-            console.log(token);
+        let keys = ['user_name', 'milk', 'soy', 'seafood'];
+        let values = [];
+        AsyncStorage.multiGet(keys, (err, stores) => {
+            stores.map((result, i, store) => {
+                values.push(store[i][1]);
+                console.log(store[i][1]);
+
+            });
+            console.log(values + '1111');
             this.setState({
                 isLoading: false,
-                userName: token
+                userName: values[0],
+                milk: values[1],
+                soy: values[2],
+                seafood: values[3]
             });
         });
+
     }
 
 
@@ -56,14 +67,14 @@ class profileScreen extends Component {
                         <Row style={styles.avatorRow}>
                             <Thumbnail large source={uri} />
                             <Text>Hi, </Text>
-                            <Text>{this.state.userName}</Text>
+                            <Text>{this.state.userName.toString()}</Text>
 
                         </Row>
                         <Row style={styles.allergCheck}>
                             <Text>Allergen</Text>
-                            {this.state.milk ? <Badge info><Text>milk</Text></Badge> : null}
-                            {this.state.soy ? <Badge info><Text>soy</Text></Badge> : null}
-                            {this.state.seafood ? <Badge info><Text>seafood</Text></Badge> : null}
+                            {this.state.milk.toString() === 'true' ? <Badge info><Text>milk</Text></Badge> : null}
+                            {this.state.soy.toString() === 'true' ? <Badge info><Text>soy</Text></Badge> : null}
+                            {this.state.seafood.toString() === 'true' ? <Badge info><Text>seafood</Text></Badge> : null}
 
                         </Row>
                         <Row style={styles.buttonRow}>

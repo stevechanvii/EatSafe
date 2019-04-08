@@ -11,9 +11,9 @@ const dataArray = [
 ];
 
 class reportScreen extends Component {
-    // static navigationOptions = {
-    //     title: 'Report',
-    // };
+    static navigationOptions = {
+        title: 'Report',
+    };
 
     render() {
         return (
