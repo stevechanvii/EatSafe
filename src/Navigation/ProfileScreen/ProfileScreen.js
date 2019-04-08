@@ -16,15 +16,18 @@ class profileScreen extends Component {
         soy: false,
         seafood: false,
         isLoading: true,
-        userName: ''
-        
+        userName: '',
+        refresh: false
+
     };
 
-    componentDidMount() {
-        const { navigation } = this.props;
-        const userName = navigation.getParam('userName', this.state.userName);
-        this.setState({userName: userName});
+    //refresh code after go back
+    refreshFunction(props) {
+        this.setState({ userName: props });
+        console.log('refreshFunction ' + this.state.userName);
+    }
 
+    componentDidMount() {
         AsyncStorage.getItem('user_name').then((token) => {
             console.log(token);
             this.setState({
@@ -34,12 +37,13 @@ class profileScreen extends Component {
         });
     }
 
-    
+
     render() {
         if (this.state.isLoading) {
             return <Container><Text>Loading...</Text></Container>;
         }
-        
+        console.log('render');
+
         return (
             <Container>
                 <Content>
@@ -59,7 +63,7 @@ class profileScreen extends Component {
                         </Row>
                         <Row style={styles.buttonRow}>
                             <Button info
-                                onPress={() => this.props.navigation.navigate('EditProfile')}>
+                                onPress={() => this.props.navigation.navigate('EditProfile', {refresh: this.refreshFunction.bind(this)})}>
                                 <Text>Setup Profile</Text>
                             </Button>
                         </Row>

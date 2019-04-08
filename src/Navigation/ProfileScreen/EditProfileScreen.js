@@ -7,6 +7,10 @@ import uri from '../../asserts/avatar_square.jpg';
 
 
 class editProfileScreen extends Component {
+    static navigationOptions = {
+        title: 'Edit Profile',
+      };
+
     constructor(props) {
         super(props);
         this.state = { 
@@ -36,7 +40,10 @@ class editProfileScreen extends Component {
             // Error saving data
             console.log(error);
           }
-          this.props.navigation.navigate('Profile', {userName: this.state.userName});
+
+          
+          this.props.navigation.state.params.refresh(this.state.userName);
+          this.props.navigation.goBack();
     };
 
     render() {
