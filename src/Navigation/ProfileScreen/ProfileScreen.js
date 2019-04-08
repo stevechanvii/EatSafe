@@ -67,14 +67,14 @@ class profileScreen extends Component {
                         <Row style={styles.avatorRow}>
                             <Thumbnail large source={uri} />
                             <Text>Hi, </Text>
-                            <Text>{this.state.userName.toString()}</Text>
+                            <Text>{this.state.userName ? this.state.userName.toString() : 'please sign in'}</Text>
 
                         </Row>
                         <Row style={styles.allergCheck}>
                             <Text>Allergen</Text>
-                            {this.state.milk.toString() === 'true' ? <Badge info><Text>milk</Text></Badge> : null}
-                            {this.state.soy.toString() === 'true' ? <Badge info><Text>soy</Text></Badge> : null}
-                            {this.state.seafood.toString() === 'true' ? <Badge info><Text>seafood</Text></Badge> : null}
+                            {this.state.milk ? this.state.milk.toString() === 'true' ? <Badge info><Text>milk</Text></Badge> : null : null}
+                            {this.state.soy ? this.state.soy.toString() === 'true' ? <Badge info><Text>soy</Text></Badge> : null : null}
+                            {this.state.seafood ? this.state.seafood.toString() === 'true' ? <Badge info><Text>seafood</Text></Badge> : null : null}
 
                         </Row>
                         <Row style={styles.buttonRow}>

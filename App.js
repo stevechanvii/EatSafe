@@ -41,13 +41,13 @@ export default createAppContainer(createBottomTabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         if (routeName === 'Diary') {
-          iconName = `calendar-${focused ? 'edit' : 'check-outline'}`;
+          iconName = `calendar-${focused ? 'edit' : 'check'}`;
         } else if (routeName === 'Scanning') {
           iconName = 'barcode-scan';
         } else if (routeName === 'Report') {
-          iconName = `clipboard-text-${focused ? 'play-outline' : 'outline'}`
+          iconName = `clipboard-text${focused ? '' : '-outline'}`
         } else if (routeName === 'Profile') {
-          iconName = `account${focused ? '-alert-outline' : ''}`
+          iconName = `account${focused ? '-alert' : ''}`
         }
 
         // You can return any component that you like here! We usually use an
