@@ -52,7 +52,7 @@ class editProfileScreen extends Component {
             <Container style={{ alignItems: 'center', justifyContent: 'center' }}>
                 {/* <Header /> */}
                 <Content>
-                    <Thumbnail large source={uri} style={{ alignSelf: 'center' }} />
+                    <Thumbnail large source={uri} style={{ alignSelf: 'center', margin: 20 }} />
                     <Text style={{ alignSelf: 'center' }}>Hi, Welcome to EatSafe,</Text>
                     <Text style={{ alignSelf: 'center' }}>The information will only be saved locally</Text>
                     <Form>
@@ -77,7 +77,7 @@ class editProfileScreen extends Component {
                         onDateChange={this.setDate}
                         disabled={false}
                     /> */}
-                    <Text style={{ alignSelf: 'center', margin: 20 }} >Please choose common allerges you suffer from</Text>
+                    <Text style={{ alignSelf: 'center', margin: 20 }} >Please choose allergies you suffering</Text>
                     <ListItem onPress={() => this.setState({ milk: !this.state.milk })}>
                         <CheckBox checked={this.state.milk} onPress={() => this.setState({ milk: !this.state.milk })} />
                         <Body>
