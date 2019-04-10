@@ -18,24 +18,29 @@ xCode
 
 ### Installing
 
-install packages
+Firstly, the environment should be setup, please refer to React Native offical site: https://facebook.github.io/react-native/docs/getting-started
+
+Choose your environment in React Native CLI Quickstart tab, follow the insrutction and install Node, Watchman, React Native CLI, etc.
+
+
+Download the code, install packages and dependencies
 
 ```
 npm install
 ```
 
-run android
+Run android, you need to run Android simulator first
 
 ```
 react-native run-android
 ```
 
-sometime may have problems with abd
+Sometime may have problems with abd (Android debug tools), be aware to change the user directory below
 ```
 export PATH="$PATH:/Users/stevechanvii/Library/Android/sdk/platform-tools":$PATH
 ```
 
-run iOS
+Run iOS
 ```
 react-native run-ios
 ```
