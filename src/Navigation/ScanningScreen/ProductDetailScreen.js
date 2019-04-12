@@ -34,6 +34,7 @@ class productDetailScreen extends Component {
                         ingredients: responseJson.product.ingredients ? responseJson.product.ingredients : 'Ingredients Not Found',
                         allergens: responseJson.product.allergens ? responseJson.product.allergens : 'Allergens Not Found',
                         image: responseJson.product.image_url ? responseJson.product.image_url : imageUri,
+                        traces: responseJson.product.traces_tags ? responseJson.product.traces_tags : '',
                         categories: responseJson.product.categories_tags ? responseJson.product.categories_tags : '',
                         nutrientLevel: responseJson.product.nutrient_levels ? responseJson.product.nutrient_levels: 'Nutrient Level Not Found',
                         genericName: responseJson.product.generic_name ? responseJson.product.generic_name : ''
