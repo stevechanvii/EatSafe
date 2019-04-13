@@ -14,29 +14,28 @@ class editProfileScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chosenDate: new Date(),
+            // chosenDate: new Date(),
             milk: false,
             soy: false,
             seafood: false,
             userName: ''
         };
-        this.setDate = this.setDate.bind(this);
+        // this.setDate = this.setDate.bind(this);
     }
 
-    setDate(newDate) {
-        this.setState({
-            chosenDate: newDate,
-        });
-    };
+    // setDate(newDate) {
+    //     this.setState({
+    //         chosenDate: newDate,
+    //     });
+    // };
 
-    // wrong!!!!!
     saveHandler = async () => {
         console.log('save Handler invoked!');
         try {
-            await AsyncStorage.setItem('user_name', JSON.stringify(this.state.userName));
-            await AsyncStorage.setItem('milk', JSON.stringify(this.state.milk));
-            await AsyncStorage.setItem('soy', JSON.stringify(this.state.soy));
-            await AsyncStorage.setItem('seafood', JSON.stringify(this.state.seafood));
+            await AsyncStorage.setItem('user_name', JSON.stringify(this.state.userName.toString()));
+            await AsyncStorage.setItem('milk', JSON.stringify(this.state.milk.toString()));
+            await AsyncStorage.setItem('soy', JSON.stringify(this.state.soy.toString()));
+            await AsyncStorage.setItem('seafood', JSON.stringify(this.state.seafood.toString()));
         } catch (error) {
             // Error saving data
             console.log(error);
@@ -46,6 +45,30 @@ class editProfileScreen extends Component {
         this.props.navigation.state.params.refresh(this.state);
         this.props.navigation.goBack();
     };
+
+    // Search the local database and set new satate
+    componentDidMount() {
+        let keys = ['user_name', 'milk', 'soy', 'seafood'];
+        let values = [];
+        AsyncStorage.multiGet(keys, (err, stores) => {
+            stores.map((result, i, store) => {
+                values.push(store[i][1]);
+                console.log(store[i][1]);
+
+            });
+            console.log(values + '1111');
+            // the value extract from database is JSON value, so need to convert to string and remove quote
+            this.setState({
+                isLoading: false,
+                userName: values[0].toString().replace(/"/g, ''),
+                milk: values[1].toString().replace(/"/g, '') === 'true',
+                soy: values[2].toString().replace(/"/g, '') === 'true',
+                seafood: values[3].toString().replace(/"/g, '') === 'true'
+            });
+        });
+
+    }
+
 
     render() {
         return (
@@ -57,8 +80,8 @@ class editProfileScreen extends Component {
                     <Text style={{ alignSelf: 'center' }}>The information will only be saved locally</Text>
                     <Form>
                         <Item floatingLabel>
-                            <Label>Username</Label>
-                            <Input onChangeText={(text) => this.setState({ userName: text })} />
+                            <Label style={this.state.userName === '' ? {} : styles.hidden }>Username</Label>
+                            <Input placeholder={this.state.userName} onChangeText={(text) => this.setState({ userName: text })} />
                         </Item>
                     </Form>
                     {/* <Text>Date of Birth</Text>
@@ -119,6 +142,10 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    hidden: {
+        width: 0,
+        height: 0,
     }
 });
 

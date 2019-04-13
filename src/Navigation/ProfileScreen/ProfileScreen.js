@@ -21,7 +21,7 @@ class profileScreen extends Component {
 
     };
 
-    //refresh code after go back
+    // this function will be sent to edit profile, then refresh code after go back
     refreshFunction(props) {
         this.setState({
             userName: props.userName,
@@ -32,6 +32,7 @@ class profileScreen extends Component {
         console.log('refreshFunction ' + this.state.soy);
     }
 
+    // Search the local database and set new satate
     componentDidMount() {
         let keys = ['user_name', 'milk', 'soy', 'seafood'];
         let values = [];
@@ -69,7 +70,7 @@ class profileScreen extends Component {
                         </Row>
                         <Row style={styles.avatorRow}>
                             <Text>Hi, </Text>
-                            <Text>{this.state.userName ? this.state.userName.toString() : 'please sign in'}</Text>
+                            <Text>{this.state.userName ? this.state.userName.toString().replace(/"/g, '') : 'please setup profile'}</Text>
                         </Row>
                         <Row style={styles.allergyIcon}>
                             <Text>Allergens</Text>
