@@ -3,6 +3,7 @@ import { Image, AsyncStorage } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Body, H2, Accordion } from 'native-base';
 import UnderScoreToJSX from '../Format/UnderScoreToJSX';
 import Icon from 'react-native-vector-icons/Feather';
+import imageUri from '../../asserts/logo.jpg';
 
 function readData() {
     let keys = ['milk', 'soy', 'seafood'];
@@ -91,7 +92,8 @@ const cardShowCase = (props) => {
                     </CardItem>
                     <CardItem>
                         <Body>
-                            <Image source={{ uri: props.productDetail.image.toString() }} style={{ height: 200, width: '100%', flex: 1 }} />
+                            <Image source={props.productDetail.image !== 'Image Not Found' ? { uri: props.productDetail.image.toString() } : require('../../asserts/allergies_image.jpg')} 
+                                    style={{ height: 200, width: '100%', flex: 1 }} />
                         </Body>
                     </CardItem>
                     <CardItem>
