@@ -27,7 +27,7 @@ export default class App extends Component {
         this.setState({
             barcode: event.data,
             // showCamera: false
-         });
+        });
         // alert(event.type + '  ' +event.data);
         this.props.navigation.navigate('ProductDetail', {
             barcodeType: event.type,
@@ -42,22 +42,23 @@ export default class App extends Component {
                     style={styles.preview}
                     type={RNCamera.Constants.Type.back}
                     flashMode={RNCamera.Constants.FlashMode.auto}
+                    captureAudio={false}
                     permissionDialogTitle={'Permission to use camera'}
                     permissionDialogMessage={'We need your permission to use your camera phone'}
-                    onBarCodeRead={this.state.showCamera ? this.onBarCodeEvent.bind(this) : null}>
-
+                    onBarCodeRead={this.state.showCamera ? this.onBarCodeEvent.bind(this) : null}
+                    barCodeTypes={[
+                        RNCamera.Constants.BarCodeType.aztec,
+                        RNCamera.Constants.BarCodeType.code128,
+                        RNCamera.Constants.BarCodeType.code39,
+                        RNCamera.Constants.BarCodeType.code39mod43,
+                        RNCamera.Constants.BarCodeType.code93,
+                        RNCamera.Constants.BarCodeType.ean13,
+                        RNCamera.Constants.BarCodeType.ean8,
+                        RNCamera.Constants.BarCodeType.pdf417
+                        ]}
+                    >
                     <BarcodeMask width={300} height={100} />
 
-                    {({ camera, status, recordAudioPermissionStatus }) => {
-                        if (status !== 'READY') return <PendingView />;
-                        return (
-                            <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-                                {/* <TouchableOpacity onPress={() => this.takePicture(camera)} style={styles.capture}>
-                                    <Text style={{ fontSize: 14 }}> SNAP </Text>
-                                </TouchableOpacity> */}
-                            </View>
-                        );
-                    }}
                 </RNCamera>
             </View>
         );

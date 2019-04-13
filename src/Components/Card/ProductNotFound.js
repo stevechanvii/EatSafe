@@ -8,6 +8,7 @@ const productNotFound = (props) => (
         <Icon name='comment-alert-outline' size={40} />
         <Text style={{ color: "black", fontSize: 20, fontWeight: "bold" }}>Sorry, product not found!</Text>
         <Text style={{ color: "black", fontSize: 18 }}>Barcode: {props.barcode}</Text>
+        <Text style={{ color: "black", fontSize: 16 }}>Barcode Type: {props.barcodeType}</Text>
     </Container>
 );
 
